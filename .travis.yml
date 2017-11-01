@@ -1,32 +1,29 @@
 sudo: required
-
 language: python
-
 services:
-  - docker
-
+- docker
 install:
-  - echo "install nothing!" # put your normal pre-testing installs here
-
+- echo "install nothing!"
 script:
-  - echo "no tests!" # put your normal testing scripts here
-
+- echo "no tests!"
+- export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+- echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
 env:
   global:
-  - REPO=pdaugavietis/centos
+  - REPO=pdaugavietis/base-centos
   - COMMIT=${TRAVIS_COMMIT::8}
-  - secure: IdhHoBVV54LuiyoopLhoN5RltMX0ZTd5eIHVza0VmDCdaVRhM5uCceJDu3M8LRJj9FtSzDAsl/fFKctLITXXaAMFSLpqtWfzRR6T44atXHQ+Taan+D8nQrVEDmxEziPxU7e+hi5FbMmi5l/c63iOtNxC0gQH4yJ2a2eCttN/HlJmUkmvN2PLQkDnd8PQDb2An+75I+7R8S6h8cVkBQRJcNVw01SLAtfSBb2wXB0wyO2vX6lZ7hKvjwXO6YpLqiVQGfa0k4Y/tSB5CRoMm97mdPIEEbQguVxalPA2l4cQP/yJRyJNMfpHxg2g0DxufPGihvRf3soYYOq4us6QhUF3ijNGmIr8x8fvxP0X90Y6sietxrz9tOEd77QzXxsjL2BVIKiF8b1OeoyRkSUCxXoCpZ//q7raBdSyl/Yck+EkjtZZDX/zUaR3FeVcCzq/Mj0Hy8e4SPehmQLOvbq+JnmoZklsf7X9mW25KLLdo0R6kXaAc0LUmbBgQNc2vxnruI2cej8M02QLNlBdSLJ7G5TtPWz8EC5rrE3byMsJKrvrLEJDgcfpiXFaYJYAT3vsMFziDmfdjN1j7+cPhbRsut6vw756VAnEQYFIy2gSvtKv7wYKcr2dQR3CD+Y4dGxcreJAihAOKY4fcQzUXsYHwrauBmxREH8Uuem3x+GodinStcg=
-  - secure: bTStAoHRdow7aJ5yHRPyStdk3rTrk7xaqD1RDmANUWL5t0lQ6KGvqz1w3M81/EpcN9SRL1DdQZ9K6nrz5Gb5lX3Rcp2tFMdSQfnZHqBxGBG4XLOCUaqrDI8764XBOXxhNlEVEsrp9FKtKQlA4zup/tpfZaHpfVN2wSyDg++LRtKHBe9UbkZTkBNXiaR38FRYHjhyqJHu9d4nlZ+JGMLWhOty3gDcQHocqEeNHY9fa0UAhvEiO0P7zNhqovAaex2PTNeSo1lCNP5fCYQV/KFhgbXLqWV3GmVJ3m2KhxIALRQ13KuoCSf5I5ji7ZCJpGn1CVk7iWIpy79Lx4saOppSs9UBKjvibq8E+Zd1hU5KZZ+erS1eDvlQN2Kl8/cwdqUBBDkUhh2P1WMhQ9OKwoEGQCZVdbdWgQXpGL978E9/jOG+uay6pftloT8SAiTmaI7YSZRDTR2Daxa5mBy2d0hT8KLfOMVUHEubV5a5EQHw/mi+t0y6B8YKPKXduWFYQy+/Su1g77aebiJm8Vl/PSUX4g1Z78QwQ34IQfgD3PfE3uhA9NaGPXN+VlssAi/edEb2Lh2zdPz4jONJ8S3XhSefu3N0QGViH8FV0mA5e6nqvhLmNvfTmu6wuNPVR7UXIHOhPoUtVKcg8PpkF7i14rlToXZq6SIe+xznbhsHBBtqRY8=
-  - secure: TkRSxWNM6auUT+/SaxZzFvLpcDNv0V5ER4iEt9Rfkrfnos0LA0exI3LjEedIKw1SwTaNVUO/a/8EyDv6bg+Oo9+erRqK2RkRM/5Q3mSqXxeAFN1y/m//59SryMFuVsFa+YA58lKGn8ipwl0EBnmxqgUaa/ZyaGGOvcEhvcF0RdtL5lVlpQKFWT18JQhcLn5ZTdMqeUorSGrrIX55F0/eSjIUAMOksjrw5ecQzWezMbD5JJwMEWs8f9whrGZLVQVbLhi2+Am+HW5SXgTUDG5jyOfc/grrIW4qeio2iHTV4Aa+SPAU2luRfqZosQYNt3dGrB/vMFhc+CpAdkpS43dNK5izNi7zLBxDCyOpaNY32rEOOOLcjUmueklYIWXOHmD9ngjEMmllljIg84NmbAMHO41UnqTvfFkRsLRK9RwJN4LftPgEjXcYPs6T7oBLZ2Gx3j3FZs6aB6lN6tgMLzX1eVACSaPhf5f8VrtfRuT4Y2DSK4M691I5yZMteTcQCVAg4WVzZliH2MoCO3PV7Qj8W8QgVKGRnAe5oyJvbsQqQBydUKj6qWhhuH9iOk4oU/P5eBkTxKX7paMqcwfIhzfTKwiTLEN5v74pXLHJJZGA9dfY/yb6L8YI/5wqXRNVhMel27qTuLEdrbxdXzC1TfUDrEWsceJYHh8lw/r3RuVw+LY=
+  - secure: osfUlEuC5cDqLqP1leCHV89rP/6kLtYLsT6M5me/B/2fPqUCc4wCyH1IR4oPDRQGbZrkhzFS+WbeZG6XXRyHh9cPdstGssFhRArj6ab7sVNTFVsv+WnwBHpZgq6ONm7MTHhnWMjCf7ojPxrO/mlJBbttPGzVccK/W29YjI5ToaklpBY+yAOdAo5wM2I+KgQO+pJP60q0dAgmkpXQIx5vT18I0MUrkVNVxFwZQki7uO2E5cjUJGgAHbO5egeNw+AMRIJ0b0sAr3WUQ6rhHisIY5Qqnu1m7H0zL47U59ONQsgAFEwWPZ0BQXG9xur5i3Q0rmxs6MiWhTWOFehw3QTXm+g/z97rzDdZfI8mjEI7q70Y4AO4eVA7gLqsiN2QKacDGA7N1AJYps/CfXXG7KoD6IcsGKYXn+LEGx31BEJHrvtg32qiVyRnx+fpjbN9N9ZJJZV5rAX4aq2XKNkqoGanYHMLPcKx0AU93XRV2XebHqpmqBNmnn8P3YdeLFbP1dIoOfBUlMUKGojqJgnTJAG3MgH7lxD+LEMyAXX1dQBfqhhS2C/viaIgcLcPG4EbuyYmuBUtsxCCHkm/MtMgBhAfpcs/RV/97DzHOHA+MLXTsIDINTksa8NAg3dM2R0GIyqMqJxqItbKD4fZYHfs/oHT//46hH2IlSy2EdGfBrsvw3A=
+  - secure: mqvm+MIdz+WxCbSxp0XQ735yaeWPUCqtzT6ljnB3X5JT1I4eHr+7Q1WOfCyph47WRllgbYCy+IXi00Y7y6YjJlJUHYiBUJgwBhiO8lCrVW0Q+12g4FWuv9NYLHphEJqRkVZdQztiFatK92raYmiHkwseHXOby+Nv7hLAsKn10fIIdr/dVm6HAG12f4ILwggnPx+IZDnmRJDv4R7RxOajBJiplPcBzJqUXvzFgFeKR73n0HNROsRuerhQJY3WlWzVf78X7Qwd66I3AZQGoHm4j7XJa9xdSmLF5b7SIrSdwofzyB64EMfmdzoALTKlVNUQkVYkRwDy6v2dpEo+favJ+PjoX5NJsCRC0aKEAbEJf3E5Pnp++Dj6JEhVNzoCVWysjjSRKjUNo0tzsr+q0wrA3VV5zE3J7E3GkH7LC9IzmUaf0vHh176Vwr/tit27wx7w9mfiUU2lF8hZwMhQ+FqpGi4waJ0QUFfj7q5A9l738hhEdUElkc+H/GK/J4fJt7jLIUWJ+It9hQ3udui3xY1mhZ6sOeMs+dBt7Y+uwy3eJ8v/ufHoBbre2d9hRXHbx+1gKL/T+y04SHq+RKnW709tLluAonrlOJfQfNgMHUgkyejgGg8xfwChIGzsP3W0FLz4gc6IH8yMeZNYup0IREMOXjJ+is3+EOS7i84BWs7oq1o=
+  - secure: mQaHI4I4kGzZTpjPvvQidajyck/DpMsyfuUs2oQbWR3LXU59XzwlxMDa1ASONR3ArFnto8gz7dNI1O88Zdg8LJpJS4nuZ55npfe9Q0zM450VUuLDK+pTfeX9gouQoLxh+cpjuQSrc1mMZky9YTWojThrn78E29c5ek3bGweucgRdND7XHy/XvikL5dLys6WOsYySdHYGbUR/zF7ijMkuLw0jKYLeUxxrA7yY40rMnsRVuiIjd9NoS3R0QScR/nG/zZyVzUZ/5LbpZ9ErIxDqZy3cJqy6SesL6I0ZIzPcoL8ZNObdk2xGYUj7YcNARnzC9/Bl47L5U2yNN0ue/NcagmBueEUR1zsHpPAUfLIV+EeTqFTBv4IRtZz6G4BQWNfCPXRjqqfhoBR+uyVrm+dwjb5jMAQdAmCkebPbKpYeYLSGp5gymo4r0Ca/2WNEqz3TBLrHdhhn2brcwPdqCWfA/Zv3O75B0xn35IAJiF5yq/CT0pNYsM5fzqpUqRnsYJSuWpva8kHqJvj3PAi2j0U8PSonSF4EhxhvxHgJTsk8sgPrXTM6UNUWAVnpdVLOGvVi9cl/yzL7hAXYjuA5pj2L/Mcr0olG0jFcVMvAV79b4naKXDE8zm5f/rsRDdGvA+xQfseme/KIJ4U1KiEH6tlJgXD676w005XR+emQ27gixYo=
 
 after_success:
-  - docker --version  # document the version travis is using
-  # - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - export REPO=$REPO
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
-  - docker build -f Dockerfile -t $REPO:$COMMIT .
-  - docker tag $REPO:$COMMIT $REPO:7
-  - docker tag $REPO:$COMMIT $REPO:$TAG
-  # - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-  - docker push $REPO
+- export REPO=yarpc/crossdock
+- export PR=https://api.github.com/repos/$TRAVIS_REPO_SLUG/pulls/$TRAVIS_PULL_REQUEST
+- export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo `curl -s $PR | jq -r .head.ref`; fi)
+- export TAG=`if [ "$BRANCH" == "master" ]; then echo "latest"; else echo $BRANCH; fi`
+- echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, REPO=$REPO, PR=$PR, BRANCH=$BRANCH, TAG=$TAG"
+- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- docker images
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker push $REPO
