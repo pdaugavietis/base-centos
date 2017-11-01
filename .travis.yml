@@ -1,0 +1,32 @@
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+install:
+  - echo "install nothing!" # put your normal pre-testing installs here
+
+script:
+  - echo "no tests!" # put your normal testing scripts here
+
+env:
+  global:
+  - REPO=pdaugavietis/centos
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - secure: IdhHoBVV54LuiyoopLhoN5RltMX0ZTd5eIHVza0VmDCdaVRhM5uCceJDu3M8LRJj9FtSzDAsl/fFKctLITXXaAMFSLpqtWfzRR6T44atXHQ+Taan+D8nQrVEDmxEziPxU7e+hi5FbMmi5l/c63iOtNxC0gQH4yJ2a2eCttN/HlJmUkmvN2PLQkDnd8PQDb2An+75I+7R8S6h8cVkBQRJcNVw01SLAtfSBb2wXB0wyO2vX6lZ7hKvjwXO6YpLqiVQGfa0k4Y/tSB5CRoMm97mdPIEEbQguVxalPA2l4cQP/yJRyJNMfpHxg2g0DxufPGihvRf3soYYOq4us6QhUF3ijNGmIr8x8fvxP0X90Y6sietxrz9tOEd77QzXxsjL2BVIKiF8b1OeoyRkSUCxXoCpZ//q7raBdSyl/Yck+EkjtZZDX/zUaR3FeVcCzq/Mj0Hy8e4SPehmQLOvbq+JnmoZklsf7X9mW25KLLdo0R6kXaAc0LUmbBgQNc2vxnruI2cej8M02QLNlBdSLJ7G5TtPWz8EC5rrE3byMsJKrvrLEJDgcfpiXFaYJYAT3vsMFziDmfdjN1j7+cPhbRsut6vw756VAnEQYFIy2gSvtKv7wYKcr2dQR3CD+Y4dGxcreJAihAOKY4fcQzUXsYHwrauBmxREH8Uuem3x+GodinStcg=
+  - secure: bTStAoHRdow7aJ5yHRPyStdk3rTrk7xaqD1RDmANUWL5t0lQ6KGvqz1w3M81/EpcN9SRL1DdQZ9K6nrz5Gb5lX3Rcp2tFMdSQfnZHqBxGBG4XLOCUaqrDI8764XBOXxhNlEVEsrp9FKtKQlA4zup/tpfZaHpfVN2wSyDg++LRtKHBe9UbkZTkBNXiaR38FRYHjhyqJHu9d4nlZ+JGMLWhOty3gDcQHocqEeNHY9fa0UAhvEiO0P7zNhqovAaex2PTNeSo1lCNP5fCYQV/KFhgbXLqWV3GmVJ3m2KhxIALRQ13KuoCSf5I5ji7ZCJpGn1CVk7iWIpy79Lx4saOppSs9UBKjvibq8E+Zd1hU5KZZ+erS1eDvlQN2Kl8/cwdqUBBDkUhh2P1WMhQ9OKwoEGQCZVdbdWgQXpGL978E9/jOG+uay6pftloT8SAiTmaI7YSZRDTR2Daxa5mBy2d0hT8KLfOMVUHEubV5a5EQHw/mi+t0y6B8YKPKXduWFYQy+/Su1g77aebiJm8Vl/PSUX4g1Z78QwQ34IQfgD3PfE3uhA9NaGPXN+VlssAi/edEb2Lh2zdPz4jONJ8S3XhSefu3N0QGViH8FV0mA5e6nqvhLmNvfTmu6wuNPVR7UXIHOhPoUtVKcg8PpkF7i14rlToXZq6SIe+xznbhsHBBtqRY8=
+  - secure: TkRSxWNM6auUT+/SaxZzFvLpcDNv0V5ER4iEt9Rfkrfnos0LA0exI3LjEedIKw1SwTaNVUO/a/8EyDv6bg+Oo9+erRqK2RkRM/5Q3mSqXxeAFN1y/m//59SryMFuVsFa+YA58lKGn8ipwl0EBnmxqgUaa/ZyaGGOvcEhvcF0RdtL5lVlpQKFWT18JQhcLn5ZTdMqeUorSGrrIX55F0/eSjIUAMOksjrw5ecQzWezMbD5JJwMEWs8f9whrGZLVQVbLhi2+Am+HW5SXgTUDG5jyOfc/grrIW4qeio2iHTV4Aa+SPAU2luRfqZosQYNt3dGrB/vMFhc+CpAdkpS43dNK5izNi7zLBxDCyOpaNY32rEOOOLcjUmueklYIWXOHmD9ngjEMmllljIg84NmbAMHO41UnqTvfFkRsLRK9RwJN4LftPgEjXcYPs6T7oBLZ2Gx3j3FZs6aB6lN6tgMLzX1eVACSaPhf5f8VrtfRuT4Y2DSK4M691I5yZMteTcQCVAg4WVzZliH2MoCO3PV7Qj8W8QgVKGRnAe5oyJvbsQqQBydUKj6qWhhuH9iOk4oU/P5eBkTxKX7paMqcwfIhzfTKwiTLEN5v74pXLHJJZGA9dfY/yb6L8YI/5wqXRNVhMel27qTuLEdrbxdXzC1TfUDrEWsceJYHh8lw/r3RuVw+LY=
+
+after_success:
+  - docker --version  # document the version travis is using
+  # - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=$REPO
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker tag $REPO:$COMMIT $REPO:7
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  # - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
