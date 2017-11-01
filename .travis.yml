@@ -17,7 +17,7 @@ env:
   - secure: mQaHI4I4kGzZTpjPvvQidajyck/DpMsyfuUs2oQbWR3LXU59XzwlxMDa1ASONR3ArFnto8gz7dNI1O88Zdg8LJpJS4nuZ55npfe9Q0zM450VUuLDK+pTfeX9gouQoLxh+cpjuQSrc1mMZky9YTWojThrn78E29c5ek3bGweucgRdND7XHy/XvikL5dLys6WOsYySdHYGbUR/zF7ijMkuLw0jKYLeUxxrA7yY40rMnsRVuiIjd9NoS3R0QScR/nG/zZyVzUZ/5LbpZ9ErIxDqZy3cJqy6SesL6I0ZIzPcoL8ZNObdk2xGYUj7YcNARnzC9/Bl47L5U2yNN0ue/NcagmBueEUR1zsHpPAUfLIV+EeTqFTBv4IRtZz6G4BQWNfCPXRjqqfhoBR+uyVrm+dwjb5jMAQdAmCkebPbKpYeYLSGp5gymo4r0Ca/2WNEqz3TBLrHdhhn2brcwPdqCWfA/Zv3O75B0xn35IAJiF5yq/CT0pNYsM5fzqpUqRnsYJSuWpva8kHqJvj3PAi2j0U8PSonSF4EhxhvxHgJTsk8sgPrXTM6UNUWAVnpdVLOGvVi9cl/yzL7hAXYjuA5pj2L/Mcr0olG0jFcVMvAV79b4naKXDE8zm5f/rsRDdGvA+xQfseme/KIJ4U1KiEH6tlJgXD676w005XR+emQ27gixYo=
 
 after_success:
-- export REPO=yarpc/crossdock
+- export REPO=pdaugavietis/base-centos
 - export PR=https://api.github.com/repos/$TRAVIS_REPO_SLUG/pulls/$TRAVIS_PULL_REQUEST
 - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo `curl -s $PR | jq -r .head.ref`; fi)
 - export TAG=`if [ "$BRANCH" == "master" ]; then echo "latest"; else echo $BRANCH; fi`
